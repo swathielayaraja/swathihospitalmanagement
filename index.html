@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediManage - Hospital Management System</title>
+  <meta name="description" content="Comprehensive hospital management solution designed for modern healthcare facilities" />
+  <meta name="author" content="MediManage" />
+
+  <meta property="og:title" content="MediManage - Hospital Management System" />
+  <meta property="og:description" content="Comprehensive hospital management solution designed for modern healthcare facilities" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@medimanage" />
+  <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+    
+    :root {
+      --medical-50: #f0f9ff;
+      --medical-100: #e0f2fe;
+      --medical-200: #bae6fd;
+      --medical-300: #7dd3fc;
+      --medical-400: #38bdf8;
+      --medical-500: #0ea5e9;
+      --medical-600: #0284c7;
+      --medical-700: #0369a1;
+      --medical-800: #075985;
+      --medical-900: #0c4a6e;
+      
+      --healing-50: #f0fdf4;
+      --healing-100: #dcfce7;
+      --healing-200: #bbf7d0;
+      --healing-300: #86efac;
+      --healing-400: #4ade80;
+      --healing-500: #22c55e;
+      --healing-600: #16a34a;
+      --healing-700: #15803d;
+      --healing-800: #166534;
+      --healing-900: #14532d;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .bg-medical-50 { background-color: var(--medical-50); }
+    .bg-medical-100 { background-color: var(--medical-100); }
+    .bg-medical-500 { background-color: var(--medical-500); }
+    .bg-medical-600 { background-color: var(--medical-600); }
+    .bg-medical-700 { background-color: var(--medical-700); }
+    .bg-medical-800 { background-color: var(--medical-800); }
+    .bg-medical-900 { background-color: var(--medical-900); }
+    
+    .text-medical-100 { color: var(--medical-100); }
+    .text-medical-200 { color: var(--medical-200); }
+    .text-medical-300 { color: var(--medical-300); }
+    .text-medical-400 { color: var(--medical-400); }
+    .text-medical-500 { color: var(--medical-500); }
+    .text-medical-600 { color: var(--medical-600); }
+    .text-medical-700 { color: var(--medical-700); }
+    .text-medical-800 { color: var(--medical-800); }
+    .text-medical-900 { color: var(--medical-900); }
+    
+    .text-healing-500 { color: var(--healing-500); }
+    
+    .hover\:bg-medical-500:hover { background-color: var(--medical-500); }
+    .hover\:bg-medical-600:hover { background-color: var(--medical-600); }
+    .hover\:bg-medical-700:hover { background-color: var(--medical-700); }
+    
+    .hover\:text-white:hover { color: white; }
+    .hover\:text-medical-600:hover { color: var(--medical-600); }
+    
+    .border-medical-500 { border-color: var(--medical-500); }
+    .border-medical-800 { border-color: var(--medical-800); }
+    
+    .from-white { --tw-gradient-from: #fff; }
+    .to-medical-50 { --tw-gradient-to: var(--medical-50); }
+  </style>
+</head>
+
+<body>
+  <div id="root" class="min-h-screen bg-white">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 w-full bg-white shadow-md transition-all duration-300">
+      <div class="container mx-auto">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-medical-600">
+              <path d="M8 19h8a2 2 0 0 0 2-2v-6.5A2.5 2.5 0 0 0 15.5 8H8a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2Z"></path>
+              <path d="M8 15h8"></path>
+              <path d="M8 11h8"></path>
+              <path d="M12.5 7.5V6a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v1.5"></path>
+              <path d="M16.5 7.5V6a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v1.5"></path>
+            </svg>
+            <span class="ml-2 text-xl font-bold text-medical-800">MediManage</span>
+          </div>
+
+          <!-- Desktop navigation -->
+          <nav class="hidden md:flex items-center space-x-8">
+            <a href="#features" class="text-medical-800 hover:text-medical-600 transition-colors">
+              Features
+            </a>
+            <a href="#testimonials" class="text-medical-800 hover:text-medical-600 transition-colors">
+              Testimonials
+            </a>
+            <a href="#contact" class="text-medical-800 hover:text-medical-600 transition-colors">
+              Contact
+            </a>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-medical-500 text-medical-500 hover:bg-medical-500 hover:text-white h-10 px-4 py-2">
+              Login
+            </button>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-medical-600 hover:bg-medical-700 text-white h-10 px-4 py-2">
+              Get Started
+            </button>
+          </nav>
+
+          <!-- Mobile menu button -->
+          <button class="md:hidden p-2" id="mobile-menu-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-medical-800">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile navigation -->
+        <div class="md:hidden py-4 bg-white hidden" id="mobile-menu">
+          <div class="flex flex-col space-y-4 px-4 pb-4">
+            <a href="#features" class="text-medical-800 hover:text-medical-600 transition-colors py-2">
+              Features
+            </a>
+            <a href="#testimonials" class="text-medical-800 hover:text-medical-600 transition-colors py-2">
+              Testimonials
+            </a>
+            <a href="#contact" class="text-medical-800 hover:text-medical-600 transition-colors py-2">
+              Contact
+            </a>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-medical-500 text-medical-500 hover:bg-medical-500 hover:text-white h-10 px-4 py-2 w-full">
+              Login
+            </button>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-medical-600 hover:bg-medical-700 text-white h-10 px-4 py-2 w-full">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative overflow-hidden bg-gradient-to-b from-white to-medical-50 pt-16 pb-20 lg:pt-24 lg:pb-32">
+        <div class="container mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col space-y-6 animate-fade-in">
+              <div>
+                <div class="inline-block rounded-full bg-medical-100 px-4 py-1.5 text-sm text-medical-700 mb-6">
+                  Hospital Management System
+                </div>
+                <h1 class="font-bold tracking-tight text-4xl md:text-5xl lg:text-6xl mb-6 text-medical-900">
+                  Transform Your Healthcare Management
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                  Seamlessly manage patients, staff, resources, and operations with our comprehensive hospital management solution. Designed for modern healthcare facilities.
+                </p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-4">
+                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium bg-medical-600 hover:bg-medical-700 text-white px-8 py-6 text-lg">
+                  Request Demo
+                </button>
+                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium border border-medical-500 text-medical-600 hover:bg-medical-50 px-8 py-6 text-lg">
+                  Learn More 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="pt-6">
+                <p class="text-sm text-gray-500 mb-3">Trusted by leading healthcare providers</p>
+                <div class="flex flex-wrap gap-8 items-center">
+                  <div class="text-gray-400 font-semibold">GENERAL HOSPITAL</div>
+                  <div class="text-gray-400 font-semibold">CITY MEDICAL</div>
+                  <div class="text-gray-400 font-semibold">CARE NETWORK</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
+              <div class="absolute inset-0 bg-medical-600/10 rounded-lg z-10"></div>
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" alt="Healthcare professional using hospital management system" class="w-full h-full object-cover object-center">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Abstract decorative shapes -->
+        <div class="absolute top-0 right-0 -z-10 opacity-20">
+          <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#0EA5E9" d="M47.5,-47.2C59.5,-31.9,66,-13,64.7,4.9C63.4,22.8,54.2,39.8,40.3,51.5C26.4,63.2,7.7,69.7,-10.1,68C-27.9,66.2,-44.9,56.2,-56,41.3C-67.2,26.4,-72.4,6.4,-67.3,-10.2C-62.2,-26.9,-46.8,-40.2,-31.8,-53C-16.7,-65.7,-2.1,-77.9,10.5,-76.5C23.1,-75.1,35.6,-62.5,47.5,-47.2Z" transform="translate(100 100)" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="py-20 bg-gradient-to-b from-white to-medical-50">
+        <div class="container mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="font-bold tracking-tight text-3xl md:text-4xl mb-4 text-medical-900">Comprehensive Healthcare Management</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our hospital management system streamlines operations, improves patient care, and optimizes resource allocation.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature Card 1 -->
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-medical-600">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-medical-800">Patient Management</h3>
+              <p class="text-gray-600">Track patient information, medical history, and appointments in one secure place.</p>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-medical-600">
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                  <line x1="16" x2="16" y1="2" y2="6"></line>
+                  <line x1="8" x2="8" y1="2" y2="6"></line>
+                  <line x1="3" x2="21" y1="10" y2="10"></line>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-medical-800">Staff Scheduling</h3>
+              <p class="text-gray-600">Efficiently manage staff rotations, shifts, and availability for optimal coverage.</p>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-medical-600">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-medical-800">Medical Records</h3>
+              <p class="text-gray-600">Securely store and access patient medical records with proper authorization controls.</p>
+            </div>
+
+            <!-- Feature Card 4 -->
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-medical-600">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-medical-800">Data Security</h3>
+              <p class="text-gray-600">HIPAA-compliant security measures to protect sensitive patient and hospital data.</p>
+            </div>
+
+            <!-- Feature Card 5 -->
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-medical-600">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-medical-800">Real-time Analytics</h3>
+              <p class="text-gray-600">Gain insights into hospital operations with powerful reporting and analytics tools.</p>
+            </div>
+
+            <!-- Feature Card 6 -->
+            <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-medical-600">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-medical-800">Resource Optimization</h3>
+              <p class="text-gray-600">Monitor and optimize beds, equipment, and facilities for better resource allocation.</p>
+            </div>
+          </div>
+
+          <div class="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative rounded-xl overflow-hidden shadow-xl h-[400px]">
+              <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" alt="Hospital staff monitoring data" class="w-full h-full object-cover object-center">
+            </div>
+
+            <div>
+              <h3 class="font-bold tracking-tight text-2xl md:text-3xl mb-6 text-medical-900">
+                Built for Every Department
+              </h3>
+              <p class="text-lg text-gray-600 mb-8">
+                Our system is designed to serve all hospital departments seamlessly, 
+                from administrative staff to medical professionals.
+              </p>
+
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-healing-500 mr-3 flex-shrink-0 mt-0.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-700">Intuitive user interface for all skill levels</span>
+                </div>
+                
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-healing-500 mr-3 flex-shrink-0 mt-0.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-700">Customizable modules tailored to specific departments</span>
+                </div>
+                
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-healing-500 mr-3 flex-shrink-0 mt-0.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-700">Mobile access for on-the-go healthcare management</span>
+                </div>
+                
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-healing-500 mr-3 flex-shrink-0 mt-0.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-700">Integration with existing hospital systems</span>
+                </div>
+                
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-healing-500 mr-3 flex-shrink-0 mt-0.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-700">Regular updates with new features and security enhancements</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="py-20 bg-medical-50">
+        <div class="container mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="font-bold tracking-tight text-3xl md:text-4xl mb-4 text-medical-900">Trusted by Healthcare Leaders</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              See what healthcare professionals are saying about our hospital management system.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="rounded-lg border bg-white text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300 border-none">
+              <div class="p-8">
+                <svg class="h-10 w-10 text-medical-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p class="text-gray-700 mb-6">MediManage has transformed our hospital operations. We've reduced administrative overhead by 35% and improved patient satisfaction scores.</p>
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <img class="h-12 w-12 rounded-full" src="https://i.pravatar.cc/150?img=32" alt="Dr. Sarah Johnson">
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="font-semibold text-medical-800">Dr. Sarah Johnson</h4>
+                    <p class="text-sm text-gray-500">Chief Medical Officer, General Hospital</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="rounded-lg border bg-white text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300 border-none">
+              <div class="p-8">
+                <svg class="h-10 w-10 text-medical-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p class="text-gray-700 mb-6">The staff scheduling feature alone saved us countless hours each month. Now our nurses can focus more on patient care rather than administrative tasks.</p>
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <img class="h-12 w-12 rounded-full" src="https://i.pravatar.cc/150?img=69" alt="Michael Chen">
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="font-semibold text-medical-800">Michael Chen</h4>
+                    <p class="text-sm text-gray-500">Head of Nursing, City Medical Center</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="rounded-lg border bg-white text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300 border-none">
+              <div class="p-8">
+                <svg class="h-10 w-10 text-medical-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p class="text-gray-700 mb-6">Implementing MediManage was the best decision we made last year. The system paid for itself within the first quarter through improved resource allocation.</p>
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <img class="h-12 w-12 rounded-full" src="https://i.pravatar.cc/150?img=47" alt="Amanda Rivera">
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="font-semibold text-medical-800">Amanda Rivera</h4>
+                    <p class="text-sm text-gray-500">Hospital Administrator, Care Network</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+              <h2 class="font-bold tracking-tight text-3xl md:text-4xl mb-6 text-medical-900">Get in Touch</h2>
+              <p class="text-lg text-gray-600 mb-8">
+                Interested in learning more about our hospital management solution? 
+                Contact us today for a personalized demo tailored to your facility's needs.
+              </p>
+
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-medical-600 mr-4 flex-shrink-0 mt-1">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Our Location</h4>
+                    <p class="text-gray-600">123 Healthcare Avenue, Medical District, CA 90210</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-medical-600 mr-4 flex-shrink-0 mt-1">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Email Us</h4>
+                    <p class="text-gray-600">info@medimanage.com</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-medical-600 mr-4 flex-shrink-0 mt-1">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Call Us</h4>
+                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+              <h3 class="text-2xl font-semibold mb-6 text-medical-800">Request Information</h3>
+              <form id="contact-form" class="space-y-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                    Your Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    placeholder="John Doe"
+                    required
+                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                    Email Address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="john@example.com"
+                    required
+                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                </div>
+
+                <div>
+                  <label for="organization" class="block text-sm font-medium text-gray-700 mb-1">
+                    Organization
+                  </label>
+                  <input
+                    id="organization"
+                    name="organization"
+                    placeholder="Your Hospital or Clinic"
+                    required
+                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell us about your requirements..."
+                    required
+                    class="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-medical-600 hover:bg-medical-700 text-white h-10 px-4 py-2 w-full">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-medical-900 text-white pt-16 pb-8">
+      <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div>
+            <div class="flex items-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-medical-400">
+                <path d="M8 19h8a2 2 0 0 0 2-2v-6.5A2.5 2.5 0 0 0 15.5 8H8a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2Z"></path>
+                <path d="M8 15h8"></path>
+                <path d="M8 11h8"></path>
+                <path d="M12.5 7.5V6a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v1.5"></path>
+                <path d="M16.5 7.5V6a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v1.5"></path>
+              </svg>
+              <span class="ml-2 text-2xl font-bold text-white">MediManage</span>
+            </div>
+            <p class="text-medical-100 mb-6">
+              Comprehensive hospital management solution designed for modern healthcare facilities.
+            </p>
+            <div class="flex space-x-4">
+              <!-- Social media icons -->
+              <a href="#" class="h-10 w-10 rounded-full bg-medical-800 flex items-center justify-center hover:bg-medical-600 transition-colors">
+                <span class="sr-only">facebook</span>
+                <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 5.013 3.693 9.153 8.505 9.876V14.65H8.031v-2.629h2.474v-1.749c0-2.896 1.411-4.167 3.818-4.167 1.153 0 1.762.085 2.051.124v2.294h-1.642c-1.022 0-1.372.524-1.372 1.592v1.907h2.981l-.406 2.629h-2.575v7.133C18.235 21.044 22 16.97 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+              </a>
+              <a href="#" class="h-10 w-10 rounded-full bg-medical-800 flex items-center justify-center hover:bg-medical-600 transition-colors">
+                <span class="sr-only">twitter</span>
+                <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 5.013 3.693 9.153 8.505 9.876V14.65H8.031v-2.629h2.474v-1.749c0-2.896 1.411-4.167 3.818-4.167 1.153 0 1.762.085 2.051.124v2.294h-1.642c-1.022 0-1.372.524-1.372 1.592v1.907h2.981l-.406 2.629h-2.575v7.133C18.235 21.044 22 16.97 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+              </a>
+              <a href="#" class="h-10 w-10 rounded-full bg-medical-800 flex items-center justify-center hover:bg-medical-600 transition-colors">
+                <span class="sr-only">linkedin</span>
+                <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 5.013 3.693 9.153 8.505 9.876V14.65H8.031v-2.629h2.474v-1.749c0-2.896 1.411-4.167 3.818-4.167 1.153 0 1.762.085 2.051.124v2.294h-1.642c-1.022 0-1.372.524-1.372 1.592v1.907h2.981l-.406 2.629h-2.575v7.133C18.235 21.044 22 16.97 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+              </a>
+              <a href="#" class="h-10 w-10 rounded-full bg-medical-800 flex items-center justify-center hover:bg-medical-600 transition-colors">
+                <span class="sr-only">instagram</span>
+                <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 5.013 3.693 9.153 8.505 9.876V14.65H8.031v-2.629h2.474v-1.749c0-2.896 1.411-4.167 3.818-4.167 1.153 0 1.762.085 2.051.124v2.294h-1.642c-1.022 0-1.372.524-1.372 1.592v1.907h2.981l-.406 2.629h-2.575v7.133C18.235 21.044 22 16.97 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Solutions</h3>
+            <ul class="space-y-4">
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Patient Management</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Staff Scheduling</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Medical Records</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Billing & Insurance</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Resource Management</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Analytics Dashboard</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Company</h3>
+            <ul class="space-y-4">
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Partners</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">News</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Resources</h3>
+            <ul class="space-y-4">
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Documentation</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Knowledge Base</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Training</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Support Center</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">Implementation Guide</a></li>
+              <li><a href="#" class="text-medical-200 hover:text-white transition-colors">API Reference</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-medical-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-medical-300 text-sm">
+              &copy; 2025 MediManage. All rights reserved.
+            </p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" class="text-medical-300 hover:text-white transition-colors text-sm">
+                Privacy Policy
+              </a>
+              <a href="#" class="text-medical-300 hover:text-white transition-colors text-sm">
+                Terms of Service
+              </a>
+              <a href="#" class="text-medical-300 hover:text-white transition-colors text-sm">
+                Legal
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS for mobile menu toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Change the icon based on menu state
+        const icon = mobileMenuButton.querySelector('svg');
+        if (mobileMenu.classList.contains('hidden')) {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+        } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+        }
+      });
+      
+      // Handle form submission
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        contactForm.reset();
+      });
+
+      // Close mobile menu when clicking on nav links
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+          const icon = mobileMenuButton.querySelector('svg');
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+        });
+      });
+
+      // Add scroll behavior for navbar
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+          header.classList.add('bg-white', 'shadow-md');
+          header.classList.remove('bg-transparent');
+        } else {
+          header.classList.remove('shadow-md');
+          if (window.innerWidth > 768) { // Only for desktop
+            header.classList.add('bg-transparent');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
